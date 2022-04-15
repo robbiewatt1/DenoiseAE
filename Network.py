@@ -74,6 +74,7 @@ class DenoiseAE(torch.nn.Module):
         super(DenoiseAE, self).__init__()
         layer_list = []
         for i, layer in enumerate(layers):
+            print(i, layer)
             if layer == "Conv":
                 layer_list.append(ConvBlock(layer_params[i]))
             elif layer == "InvConv":
@@ -89,7 +90,7 @@ class DenoiseAE(torch.nn.Module):
         :param x: input tensor
         :return: output tensor
         """
-        return self.block(x)
+        return self.network(x)
 
     def summary(self, shape):
         """
